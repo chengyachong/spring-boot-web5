@@ -5,6 +5,7 @@ import com.cyc.bootcase.mapper.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,4 +42,18 @@ public class EmployeeService {
         employeeMapper.updateEmp(employee);
         return employee;
     }
+    @Caching(
+            cacheable = {
+                    @Cacheable(value = "emp",key = "#lastName")
+            },
+            put = {
+                    @CachePut(value = "emp",key = "#result.id"),
+                    @CachePut(value = "emp",key = "#result.email")
+            }
+
+    )
+    public Employee getEmpByLastName(String lastName){
+        return employeeMapper.getEmpByLastName(lastName);
+    }
+
 }

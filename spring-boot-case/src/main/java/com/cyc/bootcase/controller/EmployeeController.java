@@ -21,4 +21,8 @@ public class EmployeeController {
         Employee employee1 =  employeeService.updateEmp(employee);
   return employee1;
      }
+@GetMapping("/emp/lastName/{lastName}")
+     public Employee getEmpByLastName(@PathVariable("lastName") String lastName){
+     return  employeeService.getEmpByLastName(lastName);
+     }
 }

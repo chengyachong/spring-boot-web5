@@ -13,4 +13,6 @@ public interface EmployeeMapper {
     public  void  delete(Integer id);
     @Insert("insert into employee(lastName,email,gender,d_id) values(#{lastName},#{email},#{gender},#{dId})")
     public  void insertEmployee(Employee employee);
+    @Select("select * from employee where lastName =#{lastName}")
+    Employee getEmpByLastName(String lastName);
 }
