@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 @RestController
 public class EmployeeController {
- @Autowired
+    @Resource
     EmployeeService employeeService;
  @GetMapping("/emp/{id}")
     public Employee getEmployee(@PathVariable("id") Integer id){
